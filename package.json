@@ -1,0 +1,36 @@
+{
+
+  "name": "libflow",
+  "version": "0.0.1",
+  "main": "index.js",
+  
+  "author": "Futago-za Ryuu <futagoza.ryuu@gmail.com>",
+  "homepage": "https://github.com/futagoza/libflow/",
+  "description": "Simple async/sync execution with flow control",
+  "keywords": [
+    "async",
+    "promise",
+    "libflow",
+    "sync"
+  ],
+  
+  "license": "MIT",
+  "repository": "futagoza/libflow",
+  "bugs": "https://github.com/futagoza/libflow/issues",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+
+  "scripts": {
+    "benchmark": "node benchmark",
+    "spec": "mocha spec --recursive",
+    "test": "npm run benchmark && npm run spec"
+  },
+  "devDependencies": {
+    "benchmark": "2.1.1",
+    "commander": "2.9.0",
+    "mocha": "3.1.0",
+    "chai": "3.5.0"
+  }
+  
+}
