@@ -26,6 +26,9 @@
     "spec": "mocha spec --recursive",
     "test": "npm run benchmark && npm run spec"
   },
+  "optionalDependencies": {
+    "bluebird": ">= 3.4.0"
+  },
   "devDependencies": {
     "benchmark": "2.1.1",
     "commander": "2.9.0",
