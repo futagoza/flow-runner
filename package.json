@@ -22,8 +22,8 @@
   },
 
   "scripts": {
-    "benchmark": "node benchmark",
-    "spec": "mocha spec --recursive",
+    "benchmark": "node benchmark --harmony",
+    "spec": "mocha spec --recursive --harmony",
     "test": "npm run benchmark && npm run spec"
   },
   "optionalDependencies": {
