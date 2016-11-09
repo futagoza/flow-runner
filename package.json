@@ -26,11 +26,8 @@
     "spec": "mocha spec --recursive --harmony",
     "test": "npm run benchmark && npm run spec"
   },
-  "optionalDependencies": {
-    "bluebird": ">= 3.4.0"
-  },
   "devDependencies": {
-    "benchmark": "2.1.1",
+    "benchmark": "2.1.2",
     "commander": "2.9.0",
     "mocha": "3.1.2",
     "chai": "3.5.0"
