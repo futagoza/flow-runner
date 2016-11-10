@@ -1,22 +1,23 @@
 {
 
-  "name": "libflow",
+  "name": "flow-runner",
   "version": "0.0.1",
   "main": "index.js",
   
   "author": "Futago-za Ryuu <futagoza.ryuu@gmail.com>",
-  "homepage": "https://github.com/futagoza/libflow/",
+  "homepage": "https://github.com/futagoza/flow-runner/",
   "description": "Simple async/sync execution with flow control",
   "keywords": [
     "async",
+    "flow",
     "promise",
-    "libflow",
+    "runner",
     "sync"
   ],
   
   "license": "MIT",
-  "repository": "futagoza/libflow",
-  "bugs": "https://github.com/futagoza/libflow/issues",
+  "repository": "futagoza/flow-runner",
+  "bugs": "https://github.com/futagoza/flow-runner/issues",
   "engines": {
     "node": ">= 4.0.0"
   },
