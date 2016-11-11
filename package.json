@@ -26,6 +26,9 @@
     "benchmark": "node benchmark --harmony",
     "test": "mocha test --recursive --harmony"
   },
+  "optionalDependencies": {
+    "bluebird": ">= 3.4.0"
+  },
   "devDependencies": {
     "benchmark": "2.1.2",
     "mocha": "3.1.2",
