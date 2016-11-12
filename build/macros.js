@@ -13,6 +13,8 @@ module.exports = {
     return prefix + `let ${ var_ } = [], i = arguments.length` + eol +
            prefix + `while ( --i ) ${ var_ }[ i ] = arguments[ i ]`
 
-  }
+  },
+
+  '@return': 'return void 0'
 
 }
