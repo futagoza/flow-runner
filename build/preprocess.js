@@ -14,11 +14,13 @@ function preprocess( input ) {
 
   function expand( name ) {
 
-    let regexp = new RegExp( name + '\s*\\(((.|\s)*)\\)', 'g' )
+    let regexp = new RegExp( '( *)' + name + '\s*\\(((.|\s)*)\\)', 'g' )
 
-    output = output.replace( regexp, function replacer( m, $1 ) {
+    output = output.replace( regexp, function write( m, $1, $2, o, s ) {
 
-      return macros[ name ].apply( null, parseArguments( $1 ) )
+      const context = { name: name, match: m, offset: o, string: s, ws: $1 }
+
+      return macros[ name ].apply( context, parseArguments( $2 ) )
 
     } )
 

@@ -2,8 +2,11 @@
 
 const fs = require( 'fs' )
 const mkdirp = require( 'mkdirp' )
+const os = require( 'os' )
 const path = require( 'path' )
 
+exports.EOL = os.EOL
+exports.sep = path.sep
 exports.join = path.join
 
 exports.mkdir = function mkdir( dirname, callback ) {
