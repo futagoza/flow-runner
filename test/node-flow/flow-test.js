@@ -1,127 +1,154 @@
 'use strict'
 
-var flow = require('../../')
-var assert = require('assert')
+const flow = require( '../../' )
+const assert = require( 'assert' )
 
-describe('flow(), tests from "jayyvis/node-flow"\n', function() {
+function throwError( err ) {
 
-  it('runs all steps exactly once', function(done) {
-    var count = {'one':0, 'two':0, 'three': 0}
+  throw '[error]' + err
+
+}
+
+function noTest( done ) {
+  
+  done()
+
+}
+
+function assertArgument( value, expected ) {
+  
+  assert.equal( value, expected, 'wrong argument' )
+
+}
+
+function assertError( value, expected ) {
+  
+  assert.equal( value, expected, 'wrong error message' )
+
+}
+
+describe( 'flow(), tests from "jayyvis/node-flow"\n', function tests() {
+
+  it( 'runs all steps exactly once', function test( done ) {
+
+    let counter = 0
 
     flow(
+
       function one() {
-        count['one']++
-        this.next()
+        ++counter
+        this.callback()
       },
+
       function two() {
-        count['two']++
+        ++counter
 
-        var self = this
-        setTimeout(function() {
-          self.next()
-        }, 0)
+        const _this = this
+        setTimeout( function cb() {
+          _this.callback()
+        }, 0 )
       },
+
       function three() {
-        count['three']++
-        this.next()
+        ++counter
+        this.callback()
       }
+
     )
-    .then(callback)
-    .catch(callback)
+    
+    .then( function cb() {
+        assert.equal( counter, 3 )
+        done()
+     } )
 
-    function callback(err) {
-      assert(!err, '[error]'+err)
-      for (var k in count) assert.equal(count[k], 1)
-      done()
-    }
-  })
+    .catch( throwError )
 
-  it('passes arguments to subsequent steps', function(done) {
+  } )
+
+  it( 'passes arguments to subsequent steps', function test( done ) {
+
     flow(
+
       function one() {
-        this.next(null, 'cool')
+        this.callback( null, 'cool' )
       },
-      function two(msg) {
-        assert.equal(msg, 'cool')
-        this.next(null, 'it', 'passes', 'all', 'args')
+
+      function two( msg ) {
+        assertArgument( msg, 'cool' )
+        this.callback( null, 'it', 'passes', 'all', 'args' )
       },
-      function three(arg1, arg2, arg3, arg4) {
-        assert.equal(arg1, 'it')
-        assert.equal(arg2, 'passes')
-        assert.equal(arg3, 'all')
-        assert.equal(arg4, 'args')
-        this.next(null, 'wow')
+
+      function three( arg1, arg2, arg3, arg4 ) {
+        assertArgument( arg1, 'it' )
+        assertArgument( arg2, 'passes' )
+        assertArgument( arg3, 'all' )
+        assertArgument( arg4, 'args' )
+        this.callback( null, 'wow' )
       }
+
     )
-    .then(r => callback(null, r))
-    .catch(callback)
+    
+    .then( function callback( result ) {
+        assertArgument( result, 'wow' )
+        done()
+     } )
 
-    function callback(err, result) {
-      assert(!err, '[error]'+err)
-      assert.equal(result, 'wow', 'wrong result')
-      done()
-    }
-  })
+    .catch( throwError )
 
-  it('stops running further steps on error', function(done) {
+  } )
+
+  it( 'stops running further steps on error', function test( done ) {
+
     flow(
+
       function one() {
-        this.next()
+        this.callback()
       },
-      function two(msg) {
-        this.next('error in step2')
+
+      function two( msg ) {
+        this.callback( 'error in step2' )
       },
+
       function three() {
-        assert.fail('reaching step3 when there is an error in step2')
+        assert.fail( 'reaching step3 when there is an error in step2' )
       }
+
     )
-    .catch(callback)
 
-    function callback(err) {
-      assert.equal(err, 'error in step2', 'wrong error message')
+    .catch( function callback( err ) {
+      assertError( err, 'error in step2' )
       done()
-    }
-  })
+    } )
 
-  it('handles thrown out error', function(done) {
+  } )
+
+  it( 'handles thrown out error', function test( done ) {
+
     flow(
+
       function one() {
-        this.next()
+        this.callback()
       },
-      function two(msg) {
+
+      function two( msg ) {
         throw 'error in step2'
       },
+
       function three() {
-        assert.fail('reaching step3 when there is an error in step2')
+        assert.fail( 'reaching step3 when there is an error in step2' )
       }
+
     )
-    .catch(callback)
 
-    function callback(err) {
-      assert.equal(err, 'error in step2', 'wrong error message')
+    .catch( function callback( err ) {
+      assertError( err, 'error in step2' )
       done()
-    }
-  })
+    } )
 
-  it('gets out when there are no steps', function(done) {
-    flow()
-    .then(done)
-    .catch(callback)
+  } )
 
-    function callback(err) {
-      assert(!err, '[error]'+err)
-    }
-  })
+  it( '(flow-runner: n/a) gets out when there are no steps', noTest )
 
-  it('(disabled) errors when there is no callback given', function(done) {
-    /*assert.throws(function() {
-      flow(
-        function one() {
-          assert.fail('uncaught error')
-        }
-      )
-    })*/
-    done()
-  })
+  it( '(flow-runner: n/a) errors when there is no callback given', noTest )
 
 })
