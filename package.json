@@ -2,7 +2,7 @@
 
   "name": "flow-runner",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib/flow.js",
   
   "author": "Futago-za Ryuu <futagoza.ryuu@gmail.com>",
   "homepage": "https://github.com/futagoza/flow-runner/",
