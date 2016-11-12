@@ -1,3 +1,5 @@
+/build
 /benchmark
+/src
 /test
 /.travis.yml
