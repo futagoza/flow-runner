@@ -12,7 +12,7 @@ fs.walk( __srcname, function onFile( source, stat ) {
 
     fs.mkdir( stat.dir.replace( __srcname, __libname ), function ready() {
 
-      if ( stat.ext == '.js' ) data = preprocess( data )
+      if ( stat.ext === '.js' ) data = preprocess( data )
 
       fs.writeFile( source.replace( __srcname, __libname ), data )
 

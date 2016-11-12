@@ -30,7 +30,7 @@ function preprocess( input ) {
 
     if ( !macros.hasOwnProperty( name ) ) continue
 
-    ( typeof macros[ name ] == 'function' ? expand : replace )( name )
+    ( typeof macros[ name ] === 'function' ? expand : replace )( name )
 
   }
 
@@ -49,7 +49,7 @@ function parseArgument( input ) {
   let argument = input.trim()
   const startsWith = argument.charAt( 0 )
 
-  if ( startsWith == '\'' || startsWith == '"' )
+  if ( startsWith === '\'' || startsWith === '"' )
 
     argument = argument.substring( 1, argument.length - 1 )
 
