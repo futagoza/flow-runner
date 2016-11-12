@@ -29,8 +29,8 @@ function flow() {
 
 module.exports = merge( flow, {
 
-  utils: require( './lib/utils' ),
-  expecting: require( './lib/expecting' ),
+  utils: require( './utils' ),
+  expecting: require( './expecting' ),
 
   Parallel: require( './Parallel' ),
   Promise: require( './Promise' ),
