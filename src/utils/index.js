@@ -12,6 +12,8 @@ module.exports = {
 
   merge: require( './merge' ),
 
+  noop: require( './noop' ),
+
   slice: require( './slice' )
 
 }

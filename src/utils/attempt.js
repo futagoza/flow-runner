@@ -13,7 +13,11 @@
 // @see https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
 //
 
+const noop = require( './noop' )
+
 module.exports = function attempt( executor, callback ) {
+
+  callback = callback || noop
 
   try {
 

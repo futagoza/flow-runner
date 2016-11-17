@@ -8,15 +8,9 @@ const attempt = require( './utils/attempt' )
 const execute = require( './utils/execute' )
 const expecting = require( './expecting' )
 const extend = require( './utils/extend' )
+const noop = require( './utils/noop' )
 const Promise = require( './Promise' )
 const slice = require( './utils/slice' )
-
-//
-// Currently only used by `job#await` to return a empty
-// empty function if the flow is already continuing.
-//
-
-function emptyFunction() { }
 
 //
 // require('flow-runner').Sequence
@@ -253,7 +247,7 @@ function Sequence( jobs ) {
         
         get await() {
 
-          if ( pending === false ) return emptyFunction
+          if ( pending === false ) return noop
 
           ++pending
 
@@ -292,7 +286,7 @@ function Sequence( jobs ) {
         
         get next() {
 
-          if ( pending === false ) return emptyFunction
+          if ( pending === false ) return noop
 
           lock = true
           _async = false
@@ -322,7 +316,7 @@ function Sequence( jobs ) {
         
         get callback() {
 
-          if ( pending === false ) return emptyFunction
+          if ( pending === false ) return noop
 
           lock = true
           _async = false
