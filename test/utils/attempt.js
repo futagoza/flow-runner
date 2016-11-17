@@ -1,6 +1,6 @@
 'use strict'
 
-const helpers = require( '../helpers' )
+const helpers = require( '../_helpers' )
 
 const assert = helpers.assert
 const attempt = helpers.utils.attempt
